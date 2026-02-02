@@ -12,9 +12,15 @@
             --card-bg: #1e293b;
             --text-main: #f8fafc;
             --text-muted: #94a3b8;
-            --accent: #38bdf8; /* Light Blue */
+            --accent: #38bdf8;
             --accent-glow: #38bdf880;
             --gradient: linear-gradient(135deg, #38bdf8 0%, #818cf8 100%);
+            --success: #10b981;
+            --warning: #f59e0b;
+        }
+
+        * {
+            box-sizing: border-box;
         }
 
         body {
@@ -26,11 +32,12 @@
             line-height: 1.6;
         }
 
-        /* --- HERO SECTION (The Big Entrance) --- */
+        /* --- HERO SECTION --- */
         header {
-            padding: 80px 20px;
+            padding: 80px 20px 60px;
             text-align: center;
             background: radial-gradient(circle at top, #1e293b 0%, #0f172a 70%);
+            position: relative;
         }
 
         h1 {
@@ -39,7 +46,8 @@
             font-weight: 800;
             background: var(--gradient);
             -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent; /* Makes text a gradient */
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
             letter-spacing: -1px;
         }
 
@@ -47,29 +55,79 @@
             font-size: 1.2rem;
             color: var(--text-muted);
             margin-top: 10px;
+            margin-bottom: 30px;
             font-weight: 300;
         }
 
-        /* --- CONTAINER & CARDS --- */
+        /* --- HIRE ME BUTTON --- */
+        .hire-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 30px;
+            background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            border-radius: 50px;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
+            transition: all 0.3s ease;
+        }
+
+        .hire-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(37, 211, 102, 0.5);
+        }
+
+        .hire-btn::before {
+            content: "💬";
+            font-size: 1.3rem;
+        }
+
+        /* --- CONTAINER & LAYOUT --- */
         .container {
-            max-width: 900px;
+            max-width: 1100px;
             margin: 0 auto;
             padding: 20px;
         }
 
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
-            margin-top: 40px;
+        .section-header {
+            margin-top: 60px;
+            margin-bottom: 30px;
         }
 
+        .section-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .section-description {
+            color: var(--text-muted);
+            font-size: 1rem;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 24px;
+            margin-bottom: 40px;
+        }
+
+        /* --- CARDS --- */
         .card {
             background-color: var(--card-bg);
             padding: 30px;
             border-radius: 16px;
             border: 1px solid rgba(255, 255, 255, 0.05);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            transition: all 0.3s ease;
+            position: relative;
         }
 
         .card:hover {
@@ -78,18 +136,90 @@
             border-color: var(--accent);
         }
 
+        .card.featured {
+            border-color: var(--accent);
+            background: linear-gradient(135deg, rgba(56, 189, 248, 0.05) 0%, rgba(129, 140, 248, 0.05) 100%);
+        }
+
+        .status-badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .status-live {
+            background: rgba(16, 185, 129, 0.2);
+            color: var(--success);
+            border: 1px solid var(--success);
+        }
+
+        .status-dev {
+            background: rgba(245, 158, 11, 0.2);
+            color: var(--warning);
+            border: 1px solid var(--warning);
+        }
+
+        .status-planning {
+            background: rgba(148, 163, 184, 0.2);
+            color: var(--text-muted);
+            border: 1px solid var(--text-muted);
+        }
+
         h2 {
             font-size: 1.5rem;
             margin-top: 0;
+            margin-bottom: 12px;
             color: white;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
 
-        p { color: var(--text-muted); }
+        .card p {
+            color: var(--text-muted);
+            margin-bottom: 20px;
+        }
 
-        /* --- THE MAGIC BUTTON --- */
+        .card .achievement {
+            background: rgba(56, 189, 248, 0.1);
+            border-left: 3px solid var(--accent);
+            padding: 12px;
+            margin: 15px 0;
+            border-radius: 4px;
+            font-size: 0.9rem;
+        }
+
+        .card .achievement strong {
+            color: var(--accent);
+        }
+
+        /* --- TAGS --- */
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+
+        .tag {
+            background: rgba(56, 189, 248, 0.1);
+            color: var(--accent);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            border: 1px solid rgba(56, 189, 248, 0.2);
+        }
+
+        /* --- BUTTONS --- */
         .btn-main {
             display: inline-block;
-            margin-top: 15px;
             padding: 12px 25px;
             background: var(--gradient);
             color: white;
@@ -97,23 +227,54 @@
             font-weight: 600;
             border-radius: 50px;
             box-shadow: 0 4px 15px var(--accent-glow);
-            transition: opacity 0.3s;
-        }
-        .btn-main:hover {
-            opacity: 0.9;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
         }
 
-        /* --- TAGS (Skills) --- */
-        .tag {
+        .btn-main:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
             display: inline-block;
-            background: rgba(56, 189, 248, 0.1);
+            padding: 12px 25px;
+            background: transparent;
             color: var(--accent);
-            padding: 5px 12px;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            margin-right: 5px;
-            margin-top: 10px;
+            text-decoration: none;
             font-weight: 600;
+            border-radius: 50px;
+            border: 1px solid var(--accent);
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(56, 189, 248, 0.1);
+        }
+
+        /* --- ABOUT SECTION --- */
+        .about-card {
+            background: var(--card-bg);
+            padding: 40px;
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            margin-bottom: 40px;
+        }
+
+        .about-card h2 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+        }
+
+        .about-card p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--text-muted);
+        }
+
+        .about-card strong {
+            color: var(--text-main);
         }
 
         /* --- FOOTER --- */
@@ -123,7 +284,22 @@
             color: var(--text-muted);
             font-size: 0.9rem;
             border-top: 1px solid rgba(255,255,255,0.05);
-            margin-top: 50px;
+            margin-top: 80px;
+        }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            .grid {
+                grid-template-columns: 1fr;
+            }
+
+            .section-title {
+                font-size: 1.5rem;
+            }
         }
     </style>
 </head>
@@ -132,56 +308,233 @@
     <header>
         <h1>Sofia</h1>
         <p class="subtitle">Building Intelligent Automation Systems</p>
+        <a href="https://wa.me/1234567890?text=Hi%2C%20I%20saw%20your%20portfolio%20and%20I'd%20like%20to%20discuss%20an%20opportunity." target="_blank" class="hire-btn">
+            Hire Me on WhatsApp
+        </a>
     </header>
 
     <div class="container">
         
-        <div class="card">
+        <!-- ABOUT SECTION -->
+        <div class="about-card">
             <h2>👋 About Me</h2>
             <p>
                 I am a Python developer specializing in <strong>AI Agents</strong> and <strong>Business Automation</strong>. 
-                I don't just write code; I build systems that save time and revenue. 
-                Currently focused on the WhatsApp Business API and Large Language Models (LLMs).
+                I don't just write code; I build systems that save time and generate revenue. 
+                Currently focused on the <strong>WhatsApp Business API</strong>, <strong>Large Language Models (LLMs)</strong>, 
+                and <strong>Retrieval-Augmented Generation (RAG)</strong> systems.
             </p>
+        </div>
+
+        <!-- COMPLETED PROJECTS -->
+        <div class="section-header">
+            <div class="section-title">
+                <span>🚀</span> Completed & Deployed
+            </div>
+            <p class="section-description">Production-ready systems with proven results</p>
+        </div>
+
+        <div class="grid">
+            
+            <div class="card featured">
+                <span class="status-badge status-live">● Live</span>
+                <h2>🤖 AI Customer Support Agent</h2>
+                <p>
+                    A 24/7 intelligent customer support agent powered by AI. 
+                    Handles inquiries, verifies webhooks automatically, and integrates seamlessly with backend databases.
+                </p>
+                <div class="achievement">
+                    <strong>Achievement:</strong> Fully deployed and handling real customer interactions autonomously.
+                </div>
+                <div class="tags">
+                    <span class="tag">Python</span>
+                    <span class="tag">Flask</span>
+                    <span class="tag">Meta API</span>
+                    <span class="tag">WhatsApp Business</span>
+                </div>
+                <a href="https://wa.me/1573519723983540?text=Hello%20Sofia" target="_blank" class="btn-main">Test Live Demo →</a>
+            </div>
+
+            <div class="card">
+                <span class="status-badge status-live">● Live</span>
+                <h2>🍽️ AI Menu Intelligence System</h2>
+                <p>
+                    Transform physical menus into searchable, budget-conscious digital interfaces. 
+                    Users can upload menu images and instantly search for items within their price range.
+                </p>
+                <div class="achievement">
+                    <strong>Achievement:</strong> Bridged the gap between raw image data and intelligent, user-friendly search. Shared on LinkedIn with positive engagement.
+                </div>
+                <div class="tags">
+                    <span class="tag">EasyOCR</span>
+                    <span class="tag">Gemini 1.5 Flash</span>
+                    <span class="tag">Streamlit</span>
+                    <span class="tag">Computer Vision</span>
+                </div>
+            </div>
+
+            <div class="card">
+                <span class="status-badge status-live">● Live</span>
+                <h2>📚 RAG Pipeline</h2>
+                <p>
+                    A complete Retrieval-Augmented Generation system for grounded AI responses. 
+                    Enables intelligent document search and contextual answer generation.
+                </p>
+                <div class="achievement">
+                    <strong>Achievement:</strong> Mastered the standard industry architecture for RAG systems—a major milestone for AI development.
+                </div>
+                <div class="tags">
+                    <span class="tag">LangChain</span>
+                    <span class="tag">ChromaDB</span>
+                    <span class="tag">Gemini API</span>
+                    <span class="tag">Vector Database</span>
+                </div>
+            </div>
+
+            <div class="card">
+                <span class="status-badge status-live">● Live</span>
+                <h2>📧 Quote Automation Script</h2>
+                <p>
+                    Automated web scraping and daily email delivery system. 
+                    Collects inspirational quotes and distributes them via scheduled email automation.
+                </p>
+                <div class="achievement">
+                    <strong>Achievement:</strong> Fully functional end-to-end automation running on schedule.
+                </div>
+                <div class="tags">
+                    <span class="tag">Python</span>
+                    <span class="tag">Web Scraping</span>
+                    <span class="tag">Email Automation</span>
+                    <span class="tag">Scheduling</span>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- IN DEVELOPMENT -->
+        <div class="section-header">
+            <div class="section-title">
+                <span>🛠️</span> In Development
+            </div>
+            <p class="section-description">Active prototypes and MVPs being refined</p>
         </div>
 
         <div class="grid">
             
             <div class="card">
-                <h2>🤖 Automated AI Agent</h2>
+                <span class="status-badge status-dev">● Active</span>
+                <h2>💄 SkinSight</h2>
                 <p>
-                    A 24/7 intelligent customer support agent. 
-                    It handles inquiries, verifies webhooks automatically, and integrates with backend databases.
+                    Skin Analysis & Product Safety Agent using multimodal AI. 
+                    Analyzes skin conditions and recommends safe, suitable products based on ingredients and skin type.
                 </p>
-                <div style="margin-bottom: 15px;">
-                    <span class="tag">Python</span>
-                    <span class="tag">Flask</span>
-                    <span class="tag">Meta API</span>
+                <div class="achievement">
+                    <strong>Status:</strong> Active hackathon project with MVP focused on "choosing the right product."
                 </div>
-                <a href="https://wa.me/1573519723983540?text=Hello%20Sofia" class="btn-main">Test Live Demo &rarr;</a>
+                <div class="tags">
+                    <span class="tag">Multimodal AI</span>
+                    <span class="tag">Computer Vision</span>
+                    <span class="tag">Product Analysis</span>
+                </div>
             </div>
 
             <div class="card">
-                <h2>📊 Data Systems</h2>
+                <span class="status-badge status-dev">● Prototype</span>
+                <h2>📊 Business Analyst Agent</h2>
                 <p>
-                    Designing scalable data pipelines for real-time analytics. 
-                    (Project currently in development).
+                    AI-powered business intelligence system that analyzes company data 
+                    and provides actionable insights for strategic decision-making.
                 </p>
-                <div style="margin-bottom: 15px;">
-                    <span class="tag">SQL</span>
-                    <span class="tag">Pandas</span>
+                <div class="tags">
+                    <span class="tag">Google SDK</span>
+                    <span class="tag">Data Analysis</span>
+                    <span class="tag">Business Intelligence</span>
                 </div>
             </div>
+
+            <div class="card">
+                <span class="status-badge status-dev">● Prototype</span>
+                <h2>🌉 ContextBridge AI</h2>
+                <p>
+                    Intelligent context management system developed during the Google Startup Program. 
+                    Maintains conversation continuity across multiple AI interactions.
+                </p>
+                <div class="tags">
+                    <span class="tag">NLP</span>
+                    <span class="tag">Context Management</span>
+                    <span class="tag">Google Startup</span>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- EARLY STAGE -->
+        <div class="section-header">
+            <div class="section-title">
+                <span>🏗️</span> Early Stage & Planning
+            </div>
+            <p class="section-description">Complex systems in the architecture phase</p>
+        </div>
+
+        <div class="grid">
+            
+            <div class="card">
+                <span class="status-badge status-planning">Planning</span>
+                <h2>💰 FinanceAI</h2>
+                <p>
+                    Financial Decision Assistant with adaptive learning systems. 
+                    Dashboard exists; currently developing backend logic for personalized financial insights and recommendations.
+                </p>
+                <div class="tags">
+                    <span class="tag">Machine Learning</span>
+                    <span class="tag">Financial Analysis</span>
+                    <span class="tag">Adaptive Systems</span>
+                </div>
+            </div>
+
+            <div class="card">
+                <span class="status-badge status-planning">Planning</span>
+                <h2>💬 WhatsApp Automation Bot</h2>
+                <p>
+                    Advanced WhatsApp business automation system. 
+                    Currently in setup phase with Meta for Developers integration and ngrok tunneling configured.
+                </p>
+                <div class="tags">
+                    <span class="tag">Meta API</span>
+                    <span class="tag">Webhooks</span>
+                    <span class="tag">ngrok</span>
+                    <span class="tag">Automation</span>
+                </div>
+            </div>
+
+            <div class="card">
+                <span class="status-badge status-planning">Planning</span>
+                <h2>📊 Real-Time Analytics Pipeline</h2>
+                <p>
+                    Designing scalable data pipelines for real-time business analytics. 
+                    Focus on high-throughput data processing and visualization.
+                </p>
+                <div class="tags">
+                    <span class="tag">SQL</span>
+                    <span class="tag">Pandas</span>
+                    <span class="tag">Real-time Processing</span>
+                </div>
+            </div>
+
         </div>
 
     </div>
 
     <footer>
         <p>&copy; 2026 Sofia. Deployed on the Cloud.</p>
+        <p style="margin-top: 10px;">
+            <a href="https://wa.me/1234567890?text=Hi%2C%20I%20saw%20your%20portfolio%20and%20I'd%20like%20to%20discuss%20an%20opportunity." 
+               target="_blank" 
+               style="color: var(--accent); text-decoration: none;">
+                Let's build something amazing together →
+            </a>
+        </p>
     </footer>
 
 </body>
-
 </html>
-
-
